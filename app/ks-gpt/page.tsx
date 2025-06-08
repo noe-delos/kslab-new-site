@@ -160,8 +160,10 @@ Use the exact markdown image syntax provided above to show both photos and compa
   });
   const [hasStartedChat, setHasStartedChat] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [shouldAutoScroll, setShouldAutoScroll] = useState(true);
   const { t, i18n } = useTranslation();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   // Get suggestions based on current language
   const suggestions =
@@ -187,15 +189,36 @@ Use the exact markdown image syntax provided above to show both photos and compa
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Auto-scroll to bottom when new messages arrive
+  // Check if user is at bottom of scroll
+  const isAtBottom = () => {
+    if (!messagesContainerRef.current) return true;
+    const container = messagesContainerRef.current;
+    const threshold = 50; // More precise threshold
+    return (
+      Math.abs(
+        container.scrollHeight - container.scrollTop - container.clientHeight
+      ) <= threshold
+    );
+  };
+
+  // Handle scroll events to track user behavior
+  const handleScroll = () => {
+    if (isAtBottom()) {
+      setShouldAutoScroll(true);
+    } else {
+      setShouldAutoScroll(false);
+    }
+  };
+
+  // Auto-scroll to bottom when new messages arrive, but only if user hasn't manually scrolled up
   useEffect(() => {
-    if (messagesEndRef.current) {
+    if (messagesEndRef.current && shouldAutoScroll) {
       messagesEndRef.current.scrollIntoView({
         behavior: "smooth",
         block: "end",
       });
     }
-  }, [messages, status]);
+  }, [messages, status, shouldAutoScroll]);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -359,8 +382,12 @@ Use the exact markdown image syntax provided above to show both photos and compa
               className="flex-1 flex flex-col relative"
             >
               {/* Messages */}
-              <div className="flex-1 overflow-y-auto px-6 py-8 pb-32">
-                <div className="max-w-4xl mx-auto space-y-8">
+              <div
+                ref={messagesContainerRef}
+                onScroll={handleScroll}
+                className="flex-1 overflow-y-auto px-6 py-8 pb-32"
+              >
+                <div className="max-w-4xl mx-auto space-y-8 pb-32">
                   <AnimatePresence>
                     {displayMessages.map((message, index) => (
                       <motion.div
@@ -531,14 +558,16 @@ Use the exact markdown image syntax provided above to show both photos and compa
       </div>
 
       {/* Trademark */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className="p-4 text-center text-zinc-600 text-sm backdrop-blur-sm"
-      >
-        {t("ksGpt.copyright")}
-      </motion.div>
+      {!hasStartedChat && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="p-4 text-center text-zinc-600 text-sm backdrop-blur-sm"
+        >
+          {t("ksGpt.copyright")}
+        </motion.div>
+      )}
     </div>
   );
 }
