@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import i18n from "@/lib/i18n";
+import StarBorder from "./StarBorder";
 
 export default function HeroSection() {
   const [showDiagonals, setShowDiagonals] = useState(false);
@@ -128,15 +129,19 @@ export default function HeroSection() {
             >
               <button
                 onClick={scheduleCall}
-                className="bg-gradient-to-r bg-foreground text-white px-6 py-3 rounded-full text-base font-medium hover:shadow-2xl hover:scale-105 transition-all duration-300 min-w-[160px]"
+                className="bg-white text-gray-800 px-6 py-3 rounded-full text-base font-medium hover:shadow-2xl hover:scale-105 transition-all duration-300 min-w-[160px] cursor-pointer border border-gray-200"
               >
                 {t("hero.scheduleCall")}
               </button>
               <button
-                onClick={navigateToKsGpt}
-                className="bg-white text-gray-800 border-2 border-gray-300 px-6 py-3 rounded-full text-base font-medium hover:bg-gray-50 hover:scale-105 transition-all duration-300 min-w-[160px] flex items-center justify-center gap-2"
+                onClick={() => router.push("/ks-gpt")}
+                className="dark-gradient-button text-white px-6 py-3.5 rounded-full text-base font-medium hover:scale-105 transition-all duration-300 min-w-[160px] cursor-pointer border border-zinc-700 flex items-center justify-center"
               >
-                {t("hero.ksGpt")}
+                <img
+                  src="/logo-white.png"
+                  alt="KS GPT"
+                  className="h-5 w-auto"
+                />
               </button>
             </motion.div>
 
