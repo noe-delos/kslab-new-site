@@ -27,9 +27,9 @@ export default function Header() {
   const isScrolled = scrollY >= 100;
 
   const getHeaderWidth = () => {
-    if (isAtTop) return "w-full max-w-[75%]";
-    if (isScrolling) return "w-[55%] max-w-4xl";
-    return "w-[55%] max-w-4xl";
+    if (isAtTop) return "w-full max-w-[95%] md:max-w-[75%]";
+    if (isScrolling) return "w-[95%] md:w-[55%] max-w-4xl";
+    return "w-[95%] md:w-[55%] max-w-4xl";
   };
 
   const getHeaderHeight = () => {
@@ -79,7 +79,7 @@ export default function Header() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="flex items-center h-full px-6">
+        <div className="flex items-center justify-between h-full px-6">
           {/* Logo */}
           <div className="flex items-center flex-shrink-0">
             <img
@@ -163,24 +163,24 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Now on the right */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors ml-auto"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </motion.header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Positioned further from top */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200 w-[90%] max-w-sm md:hidden"
+            className="fixed top-28 left-1/2 transform -translate-x-1/2 z-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200 w-[90%] max-w-sm md:hidden"
           >
             <div className="p-6 space-y-4">
               <button

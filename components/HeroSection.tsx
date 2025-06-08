@@ -35,7 +35,7 @@ export default function HeroSection() {
   return (
     <section className="relative flex items-center justify-center px-4 pt-0 pb-0">
       <motion.div
-        className="relative w-full max-w-[80%] mx-auto"
+        className="relative w-full max-w-[95%] md:max-w-[80%] mx-auto"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -155,36 +155,6 @@ export default function HeroSection() {
               </p>
             </motion.div>
           </div>
-
-          {/* Animated Rectangular Elements - Way bigger and more spaced */}
-          <motion.div
-            className="absolute bottom-0 left-0 right-0 h-48 z-30"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: showDiagonals ? 1 : 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            {/* Left rectangles - Much bigger and more spaced */}
-            <motion.div
-              className="absolute bottom-12 -left-[20%] w-[35rem] h-32 bg-white/20 backdrop-blur-sm border-2 border-white transform rotate-45"
-              initial={{ y: 100, opacity: 0 }}
-              animate={{
-                y: showDiagonals ? 0 : 100,
-                opacity: showDiagonals ? 1 : 0,
-              }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            />
-
-            {/* Right rectangles - Much bigger and more spaced */}
-            <motion.div
-              className="absolute bottom-12 -right-[20%] w-[35rem] h-32 bg-white/20 backdrop-blur-sm border-2 border-white transform -rotate-45"
-              initial={{ y: 100, opacity: 0 }}
-              animate={{
-                y: showDiagonals ? 0 : 100,
-                opacity: showDiagonals ? 1 : 0,
-              }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            />
-          </motion.div>
         </div>
       </motion.div>
     </section>

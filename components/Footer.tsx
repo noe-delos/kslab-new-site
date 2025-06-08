@@ -123,9 +123,6 @@ export default function Footer() {
                 alt="KS Agency"
                 className="w-10 h-10 object-contain"
               />
-              <div>
-                <h3 className="text-lg font-bold text-gray-900">ks agency</h3>
-              </div>
             </div>
             <p className="text-gray-600 leading-relaxed text-sm">
               {t("footer.company.description")}
@@ -140,26 +137,24 @@ export default function Footer() {
             className="lg:col-span-7 bg-white rounded-2xl border border-border p-6 relative"
           >
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {/* Menu Column */}
+              {/* Navigation Column */}
               <div>
-                <h4 className="font-semibold text-gray-900 mb-3">
-                  {t("footer.menu.title")}
-                </h4>
+                <h4 className="font-semibold text-gray-900 mb-3">Navigation</h4>
                 <ul className="space-y-2">
                   <li>
                     <a
-                      href="#"
+                      href="/ks-gpt"
                       className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
                     >
-                      {t("footer.menu.presentation")}
+                      KS-GPT
                     </a>
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="/contact"
                       className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
                     >
-                      {t("footer.menu.artificialIntelligence")}
+                      Contact
                     </a>
                   </li>
                 </ul>
@@ -213,9 +208,14 @@ export default function Footer() {
             {/* Copyright */}
             <div className="mt-6 pt-4 border-t border-gray-200 flex justify-between items-center">
               <p className="text-xs text-gray-500">{t("footer.copyright")}</p>
-              <div className="w-5 h-5 bg-gray-200 rounded flex items-center justify-center">
+              <a
+                href="https://www.linkedin.com/company/ks-labs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-5 h-5 bg-gray-200 rounded flex items-center justify-center hover:bg-gray-300 transition-colors"
+              >
                 <span className="text-xs text-gray-500">in</span>
-              </div>
+              </a>
             </div>
           </motion.div>
         </div>
