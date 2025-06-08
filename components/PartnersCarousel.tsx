@@ -83,15 +83,11 @@ export default function PartnersCarousel() {
           >
             {/* First set of logos */}
             {logos.map((logo, index) => (
-              <motion.div
+              <div
                 key={`first-${index}`}
                 className={`flex-shrink-0 ${getLogoSize(
                   logo
                 )} relative grayscale hover:grayscale-0 transition-all duration-300`}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
               >
                 <Image
                   src={logo}
@@ -99,7 +95,7 @@ export default function PartnersCarousel() {
                   fill
                   className="object-contain"
                 />
-              </motion.div>
+              </div>
             ))}
 
             {/* Duplicate set for seamless loop */}

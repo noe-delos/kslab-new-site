@@ -61,6 +61,16 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
+  const navigateToContact = () => {
+    router.push("/contact");
+    setIsMobileMenuOpen(false);
+  };
+
+  const navigateToHome = () => {
+    router.push("/");
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <>
       <motion.header
@@ -75,7 +85,8 @@ export default function Header() {
             <img
               src="/logo.png"
               alt="KS Logo"
-              className="w-fit object-contain h-[1.2rem]"
+              className="w-fit object-contain h-[1.2rem] cursor-pointer"
+              onClick={navigateToHome}
             />
           </div>
 
@@ -84,11 +95,14 @@ export default function Header() {
             <div className="flex items-center space-x-8">
               <button
                 onClick={navigateToKsGpt}
-                className="text-zinc-600 hover:text-gray-900 transition-colors text-sm font-normal"
+                className="text-zinc-600 hover:text-gray-900 transition-colors text-sm font-normal cursor-pointer"
               >
                 {t("navigation.ksGpt")}
               </button>
-              <button className="text-zinc-600 hover:text-gray-900 transition-colors text-sm font-normal">
+              <button
+                onClick={navigateToContact}
+                className="text-zinc-600 hover:text-gray-900 transition-colors text-sm font-normal cursor-pointer"
+              >
                 {t("navigation.contact")}
               </button>
             </div>
@@ -171,11 +185,14 @@ export default function Header() {
             <div className="p-6 space-y-4">
               <button
                 onClick={navigateToKsGpt}
-                className="block w-full text-left text-gray-700 hover:text-gray-900 py-2 transition-colors"
+                className="block w-full text-left text-gray-700 hover:text-gray-900 py-2 transition-colors cursor-pointer"
               >
                 {t("navigation.ksGpt")}
               </button>
-              <button className="block w-full text-left text-gray-700 hover:text-gray-900 py-2 transition-colors">
+              <button
+                onClick={navigateToContact}
+                className="block w-full text-left text-gray-700 hover:text-gray-900 py-2 transition-colors cursor-pointer"
+              >
                 {t("navigation.contact")}
               </button>
 

@@ -142,14 +142,18 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Motto */}
-            <motion.p
-              className="text-gray-600 italic text-lg font-normal"
+            <motion.div
+              className="flex items-center justify-center gap-3 mt-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
             >
-              "{t("hero.motto")}"
-            </motion.p>
+              {/* Quote indicator rectangle */}
+              <div className="w-1 h-4 bg-gray-300 rounded-full"></div>
+              <p className="text-white text-base pt-serif-regular-italic">
+                {t("hero.motto")}
+              </p>
+            </motion.div>
           </div>
 
           {/* Animated Rectangular Elements - Way bigger and more spaced */}
