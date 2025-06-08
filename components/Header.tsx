@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
@@ -6,7 +5,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import i18n from "@/lib/i18n";
 
 export default function Header() {
@@ -26,6 +25,17 @@ export default function Header() {
   const isScrolling = scrollY > 0 && scrollY < 100;
   const isScrolled = scrollY >= 100;
 
+  // Calculate smooth radius based on scroll position
+  const getBorderRadius = () => {
+    if (scrollY === 0) return "1rem"; // 16px (rounded-2xl)
+    if (scrollY >= 200) return "9999px"; // rounded-full - increased threshold for slower transition
+    // Smooth transition between 16px and 9999px - slower transition
+    const progress = scrollY / 200; // doubled the threshold for slower change
+    const startRadius = 16;
+    const endRadius = 50; // Large enough to appear fully rounded
+    return `${startRadius + (endRadius - startRadius) * progress}px`;
+  };
+
   const getHeaderWidth = () => {
     if (isAtTop) return "w-full max-w-[95%] md:max-w-[75%]";
     if (isScrolling) return "w-[95%] md:w-[55%] max-w-4xl";
@@ -38,10 +48,16 @@ export default function Header() {
     return "h-14";
   };
 
-  const getHeaderRounding = () => {
-    if (isAtTop) return "rounded-2xl";
-    if (isScrolling) return "rounded-2xl";
-    return "rounded-full";
+  // Get logo positioning based on scroll state
+  const getLogoClasses = () => {
+    if (isScrolled) return "ml-3"; // Slightly more movement
+    return "";
+  };
+
+  // Get CTA button positioning based on scroll state - MUCH more to the right
+  const getCtaButtonClasses = () => {
+    if (isScrolled) return "mr-6"; // Much more movement to the right as requested
+    return "";
   };
 
   const switchLocale = (newLocale: string) => {
@@ -74,14 +90,19 @@ export default function Header() {
   return (
     <>
       <motion.header
-        className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-white/90 backdrop-blur-md shadow-xs border border-foreground/10 transition-all duration-500 ${getHeaderWidth()} ${getHeaderHeight()} ${getHeaderRounding()}`}
+        className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-white/90 backdrop-blur-md shadow-xs border border-foreground/10 transition-all duration-700 ease-out ${getHeaderWidth()} ${getHeaderHeight()}`}
+        style={{
+          borderRadius: getBorderRadius(),
+        }}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div className="flex items-center justify-between h-full px-6">
           {/* Logo */}
-          <div className="flex items-center flex-shrink-0">
+          <div
+            className={`flex items-center flex-shrink-0 transition-all duration-700 ease-out ${getLogoClasses()}`}
+          >
             <img
               src="/logo.png"
               alt="KS Logo"
@@ -109,46 +130,57 @@ export default function Header() {
           </nav>
 
           {/* Right side - Language & CTA */}
-          <div className="hidden md:flex items-center space-x-4 flex-shrink-0">
-            {/* Language Selector */}
+          <div
+            className={`hidden md:flex items-center space-x-4 flex-shrink-0 transition-all duration-700 ease-out ${getCtaButtonClasses()}`}
+          >
+            {/* Modern Language Selector */}
             <div className="relative">
               <button
                 onClick={() =>
                   setIsLanguageDropdownOpen(!isLanguageDropdownOpen)
                 }
-                className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 transition-colors"
+                className="group flex items-center space-x-2 px-3 py-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200 border border-transparent hover:border-gray-200 hover:shadow-sm"
               >
-                <Globe size={18} />
-                <span className="uppercase">{i18n.language}</span>
+                <Globe
+                  size={16}
+                  className="group-hover:scale-110 transition-transform duration-200"
+                />
+                <ChevronDown
+                  size={14}
+                  className={`transition-all duration-200 ${
+                    isLanguageDropdownOpen ? "rotate-180" : ""
+                  } group-hover:text-gray-700`}
+                />
               </button>
 
               <AnimatePresence>
                 {isLanguageDropdownOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-lg border border-gray-200 py-2 min-w-[80px]"
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute top-full mt-2 right-0 bg-white rounded-xl shadow-lg border border-gray-200 py-3 px-2 min-w-[120px] overflow-hidden"
                   >
                     <button
                       onClick={() => switchLocale("fr")}
-                      className={`block w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors ${
+                      className={`group block w-full text-left px-4 py-3 hover:bg-gray-50 transition-all duration-150 text-sm font-medium rounded-lg ${
                         i18n.language === "fr"
                           ? "bg-blue-50 text-blue-600"
-                          : "text-gray-700"
+                          : "text-gray-700 hover:text-gray-900"
                       }`}
                     >
-                      FR
+                      Français
                     </button>
                     <button
                       onClick={() => switchLocale("en")}
-                      className={`block w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors ${
+                      className={`group block w-full text-left px-4 py-3 hover:bg-gray-50 transition-all duration-150 text-sm font-medium rounded-lg ${
                         i18n.language === "en"
                           ? "bg-blue-50 text-blue-600"
-                          : "text-gray-700"
+                          : "text-gray-700 hover:text-gray-900"
                       }`}
                     >
-                      EN
+                      English
                     </button>
                   </motion.div>
                 )}
@@ -157,7 +189,7 @@ export default function Header() {
 
             <button
               onClick={scheduleCall}
-              className="bg-white text-gray-700 shadow-xs border border-foreground/10 cursor-pointer px-4 py-2 rounded-full hover:bg-gray-50 transition-all duration-300 text-sm font-medium"
+              className="bg-white text-gray-700 shadow-xs border border-foreground/10 cursor-pointer px-4 py-2 rounded-full hover:bg-gray-50 transition-all duration-300 text-sm font-medium hover:shadow-sm hover:scale-105"
             >
               {t("navigation.scheduleCall")}
             </button>

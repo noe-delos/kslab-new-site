@@ -5,9 +5,9 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 const workflowImages = [
-  "https://framerusercontent.com/images/UWjm34yW5VKdFszqkm2ZunVq4.jpg",
-  "https://framerusercontent.com/images/SDPnOcnSDHvAhgRRw8Zt5MToaS4.png",
   "https://framerusercontent.com/images/JgI63q8PBgkZ9t6z8JftPJD2IY.jpg",
+  "https://framerusercontent.com/images/95mK4cGWkZ7jWn7E5DfMI9e8.jpg",
+  "https://framerusercontent.com/images/UWjm34yW5VKdFszqkm2ZunVq4.jpg",
 ];
 
 const stepKeys = ["step1", "step2", "step3"];
@@ -136,7 +136,7 @@ export default function WorkflowSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex justify-center"
           >
-            <div className="relative w-96 h-96 mx-auto">
+            <div className="relative size-[30rem] mx-auto">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentStep}
