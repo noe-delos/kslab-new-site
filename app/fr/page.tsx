@@ -22,7 +22,7 @@ export default function HomePage() {
         <SolutionsSection />
         <WorkflowSection />
         <FeaturesSection />
-        <TestimonialsSection />
+        {/* <TestimonialsSection /> */}
         <FAQSection />
       </main>
       <Footer />
