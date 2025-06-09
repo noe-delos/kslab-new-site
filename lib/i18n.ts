@@ -29,30 +29,30 @@ const resources = {
         description:
           "Discover how our innovative solutions can transform your business operations",
         items: {
-          aiAnalytics: {
-            title: "AI-Powered Analytics",
+          conversationalSimulators: {
+            title: "Conversational Simulators",
             description:
-              "Transform your data into actionable insights with our advanced AI analytics platform.",
+              "Job interviews, cold calling, eloquence analysis, oral exercises: today's conversational AI feeds on your data (courses, business questions, sales scripts) and analyzes in real time impatience, hesitations and micro-signals for tailor-made vocal coaching.",
           },
-          automation: {
-            title: "Process Automation",
+          alumniAI: {
+            title: "Alumni AI",
             description:
-              "Streamline your operations with intelligent automation solutions.",
+              "AI revolutionizes education: it facilitates mentoring between students and alumni, creating intelligent and personalized connections for optimal support.",
           },
-          security: {
-            title: "Security Solutions",
+          mathAgents: {
+            title: "Academic Math Agents",
             description:
-              "Protect your business with enterprise-grade security measures.",
+              "Helps analyze complex problems, and offers personalized solutions, correction and creation of relevant exercises adapted to each student's level.",
           },
-          collaboration: {
-            title: "Team Collaboration",
+          documentAnalysis: {
+            title: "Intelligent Document Analysis",
             description:
-              "Enhance productivity with seamless team collaboration tools.",
+              "Automatic extraction of key information, document classification and intelligent summaries for optimizing the processing of your document data.",
           },
-          integration: {
-            title: "Custom Integration",
+          predictiveAnalytics: {
+            title: "Predictive Analytics",
             description:
-              "Integrate with your existing systems for a unified workflow.",
+              "Anticipate market trends and client behaviors thanks to our personalized predictive AI models for your sector of activity.",
           },
         },
       },
@@ -80,35 +80,33 @@ const resources = {
       },
       features: {
         label: "FEATURES",
-        title: "Why choose us?",
+        title: "Our AI Systems",
         description:
-          "Discover the key advantages that make us your ideal AI partner",
+          "Discover the types of AI systems we develop to transform your business",
         items: {
           expertise: {
-            title: "Deep Expertise",
+            title: "Autonomous Agents",
             description:
-              "Our team combines years of experience in AI development and business strategy.",
+              "We create intelligent AI agents that automate your complex processes and make autonomous decisions.",
           },
           speed: {
-            title: "Fast Delivery",
+            title: "SaaS Solutions",
             description:
-              "We deliver high-quality solutions quickly without compromising on excellence.",
+              "Development of AI-powered SaaS platforms to optimize your operations and services.",
           },
           support: {
-            title: "24/7 Support",
+            title: "AI Lead Magnets",
             description:
-              "Our dedicated support team is always available to help you succeed.",
+              "AI systems specialized in automatic generation and qualification of qualified prospects.",
           },
         },
       },
       testimonials: {
         label: "TESTIMONIALS",
         title: "What our clients say",
-        description:
-          "Don't just take our word for it - hear from our satisfied clients",
         items: {
           testimonial1: {
-            text: "KS Lab transformed our business operations with their AI solutions. The results exceeded our expectations.",
+            text: "Truly professional approach and AI solution perfectly adapted to our challenges. The results are there!",
             name: "Joachim Pinto",
             role: "CEO",
             company: "SCHOLA - Groupe",
@@ -249,30 +247,30 @@ const resources = {
         description:
           "Découvrez comment nos solutions innovantes peuvent transformer vos opérations commerciales",
         items: {
-          aiAnalytics: {
-            title: "Analyse IA Avancée",
+          conversationalSimulators: {
+            title: "Simulateurs Conversationnels",
             description:
-              "Transformez vos données en insights exploitables avec notre plateforme d'analyse IA avancée.",
+              "Entretiens d'embauche, Cold calling, Analyse d'éloquence, exercices oraux : l'IA conversationnelle d'aujourd'hui s'alimente de vos données (cours, questions métier, scripts de vente) et analyse en temps réel impatience, hésitations et micro-signaux pour un coaching vocal sur-mesure.",
           },
-          automation: {
-            title: "Automatisation des Processus",
+          alumniAI: {
+            title: "Alumni IA",
             description:
-              "Rationalisez vos opérations avec des solutions d'automatisation intelligente.",
+              "L'IA révolutionne l'éducation : elle facilite le mentorat entre étudiants et alumni, créant des connexions intelligentes et personnalisées pour un accompagnement optimal.",
           },
-          security: {
-            title: "Solutions de Sécurité",
+          mathAgents: {
+            title: "Agents Mathématiques Scolaires",
             description:
-              "Protégez votre entreprise avec des mesures de sécurité de niveau entreprise.",
+              "Aide à analyser des problèmes complexes, et propose des solutions personnalisées, la correction et la création d'exercices pertinents adaptés au niveau de chaque étudiant.",
           },
-          collaboration: {
-            title: "Collaboration d'Équipe",
+          documentAnalysis: {
+            title: "Analyse Intelligente de Documents",
             description:
-              "Améliorez la productivité avec des outils de collaboration d'équipe transparents.",
+              "Extraction automatique d'informations clés, classification de documents et résumés intelligents pour optimiser le traitement de vos données documentaires.",
           },
-          integration: {
-            title: "Intégration Personnalisée",
+          predictiveAnalytics: {
+            title: "Analytics Prédictifs",
             description:
-              "Intégrez-vous à vos systèmes existants pour un flux de travail unifié.",
+              "Anticipez les tendances de votre marché et les comportements clients grâce à nos modèles d'IA prédictive personnalisés pour votre secteur d'activité.",
           },
         },
       },
@@ -300,35 +298,33 @@ const resources = {
       },
       features: {
         label: "AVANTAGES",
-        title: "Pourquoi nous choisir ?",
+        title: "Nos systèmes IA",
         description:
-          "Découvrez les avantages clés qui font de nous votre partenaire IA idéal",
+          "Découvrez les types de systèmes IA que nous développons pour transformer votre entreprise",
         items: {
           expertise: {
-            title: "Expertise Approfondie",
+            title: "Agents Autonomes",
             description:
-              "Notre équipe combine des années d'expérience en développement IA et stratégie business.",
+              "Nous créons des agents IA intelligents qui automatisent vos processus complexes et prennent des décisions autonomes.",
           },
           speed: {
-            title: "Livraison Rapide",
+            title: "Solutions SaaS",
             description:
-              "Nous livrons des solutions de haute qualité rapidement sans compromettre l'excellence.",
+              "Développement de plateformes SaaS alimentées par l'IA pour optimiser vos opérations et services.",
           },
           support: {
-            title: "Support 24/7",
+            title: "Magnets Leads IA",
             description:
-              "Notre équipe de support dédiée est toujours disponible pour vous aider à réussir.",
+              "Systèmes IA spécialisés dans la génération et qualification automatique de prospects qualifiés.",
           },
         },
       },
       testimonials: {
         label: "TÉMOIGNAGES",
         title: "Ce que disent nos clients",
-        description:
-          "Ne nous croyez pas sur parole - écoutez nos clients satisfaits",
         items: {
           testimonial1: {
-            text: "KS Lab a transformé nos opérations avec leurs solutions IA. Les résultats ont dépassé nos attentes.",
+            text: "KS Lab a compris nos enjeux pédagogiques et a livré une solution IA parfaitement adaptée. Leur approche est vraiment professionnelle et les résultats sont là !",
             name: "Joachim Pinto",
             role: "CEO",
             company: "SCHOLA - Groupe",

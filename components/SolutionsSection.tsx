@@ -5,34 +5,45 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Brain, Zap, Shield, Users, Settings } from "lucide-react";
+import {
+  Brain,
+  Zap,
+  Shield,
+  Users,
+  Settings,
+  MessageCircle,
+  GraduationCap,
+  Calculator,
+  FileText,
+  TrendingUp,
+} from "lucide-react";
 
 const solutionKeys = [
   {
-    key: "aiAnalytics",
-    icon: Brain,
+    key: "conversationalSimulators",
+    icon: MessageCircle,
     image: "https://framerusercontent.com/images/xJ3fjboUJLVolfGqf752ILN4.png",
   },
   {
-    key: "automation",
-    icon: Zap,
+    key: "alumniAI",
+    icon: GraduationCap,
     image:
       "https://framerusercontent.com/images/jrY5DWrX2645mgGTeVIjpXjVIU.png",
   },
   {
-    key: "security",
-    icon: Shield,
+    key: "mathAgents",
+    icon: Calculator,
     image: "https://framerusercontent.com/images/xJ3fjboUJLVolfGqf752ILN4.png",
   },
   {
-    key: "collaboration",
-    icon: Users,
+    key: "documentAnalysis",
+    icon: FileText,
     image:
       "https://framerusercontent.com/images/jrY5DWrX2645mgGTeVIjpXjVIU.png",
   },
   {
-    key: "integration",
-    icon: Settings,
+    key: "predictiveAnalytics",
+    icon: TrendingUp,
     image: "https://framerusercontent.com/images/xJ3fjboUJLVolfGqf752ILN4.png",
   },
 ];

@@ -11,6 +11,13 @@ export default function Footer() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
+  const scheduleCall = () => {
+    window.open(
+      "https://calendly.com/louis-ks-entreprise/30min?month=2025-06",
+      "_blank"
+    );
+  };
+
   return (
     <section ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 space-y-8 z-50">
       <div className="max-w-5xl mx-auto space-y-8 z-50">
@@ -100,6 +107,7 @@ export default function Footer() {
                   isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
                 }
                 transition={{ duration: 0.8, delay: 0.5 }}
+                onClick={scheduleCall}
                 className="bg-white text-gray-900 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors duration-300 shadow-lg"
               >
                 {t("cta.button")}

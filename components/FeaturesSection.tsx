@@ -3,20 +3,20 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Star, Zap, Users } from "lucide-react";
+import { Bot, Cloud, Target } from "lucide-react";
 
 const featureKeys = [
   {
     key: "expertise",
-    icon: Star,
+    icon: Bot,
   },
   {
     key: "speed",
-    icon: Zap,
+    icon: Cloud,
   },
   {
     key: "support",
-    icon: Users,
+    icon: Target,
   },
 ];
 
@@ -41,8 +41,15 @@ export default function FeaturesSection() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="flex justify-center mb-6"
         >
-          <div className="px-4 py-2 bg-gray-100 rounded-full text-sm font-semibold uppercase tracking-wider text-gray-700">
-            {t("features.label")}
+          <div className="relative px-4 py-1 rounded-full text-sm font-semibold uppercase tracking-wider">
+            {/* Gradient border */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#9E96CE] via-[#663c9c] to-purple-400 p-[1.5px]">
+              <div className="bg-white rounded-full h-full w-full"></div>
+            </div>
+            {/* Gradient text */}
+            <span className="relative bg-gradient-to-r font-medium from-[#9E96CE] via-[#663c9c] to-purple-400 bg-clip-text text-transparent">
+              {t("features.label")}
+            </span>
           </div>
         </motion.div>
 

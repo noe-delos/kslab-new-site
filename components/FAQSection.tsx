@@ -51,8 +51,15 @@ export default function FAQSection() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex justify-center xl:justify-start"
             >
-              <div className="px-4 py-2 bg-gray-100 rounded-full text-sm font-semibold uppercase tracking-wider text-gray-700">
-                {t("faq.label")}
+              <div className="relative px-4 py-1 rounded-full text-sm font-semibold uppercase tracking-wider">
+                {/* Gradient border */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#9E96CE] via-[#663c9c] to-purple-400 p-[1.5px]">
+                  <div className="bg-white rounded-full h-full w-full"></div>
+                </div>
+                {/* Gradient text */}
+                <span className="relative bg-gradient-to-r font-medium from-[#9E96CE] via-[#663c9c] to-purple-400 bg-clip-text text-transparent">
+                  {t("faq.label")}
+                </span>
               </div>
             </motion.div>
 
@@ -75,18 +82,6 @@ export default function FAQSection() {
             >
               {t("faq.description")}
             </motion.p>
-
-            {/* Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex justify-center xl:justify-start"
-            >
-              <button className="bg-gray-900 text-white px-6 py-3 rounded-xl font-medium hover:bg-gray-800 transition-colors duration-300">
-                {t("faq.button")}
-              </button>
-            </motion.div>
 
             {/* FAQ Items */}
             <motion.div
