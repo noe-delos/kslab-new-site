@@ -64,7 +64,7 @@ export default function HeroSection() {
           </div>
 
           {/* Content */}
-          <div className="relative z-40 px-8 py-32 text-center mt-[4rem]">
+          <div className="relative z-40 px-8 py-16 sm:py-32 text-center mt-[2rem] sm:mt-[4rem]">
             {/* KS LAB Label */}
             <motion.div
               className="inline-block mb-3"
@@ -86,7 +86,7 @@ export default function HeroSection() {
 
             {/* Main Title */}
             <motion.h1
-              className="text-4xl md:text-6xl lg:text-7xl font-medium text-gray-900 mb-6 leading-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-medium text-gray-900 mb-4 sm:mb-6 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -112,7 +112,7 @@ export default function HeroSection() {
 
             {/* Description */}
             <motion.p
-              className="text-lg md:text-xl text-zinc-500 mb-12 max-w-3xl mx-auto leading-relaxed font-normal"
+              className="text-lg md:text-xl text-zinc-500 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed font-normal"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -122,7 +122,7 @@ export default function HeroSection() {
 
             {/* Buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6 sm:mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
