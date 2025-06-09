@@ -16,7 +16,6 @@ import SplashCursor from "@/components/SplashCursor";
 
 import "@/lib/i18n";
 
-// Dynamically import Orb to avoid SSR issues
 const Orb = dynamic(() => import("@/components/Orb"), { ssr: false });
 
 // KS Team data
@@ -30,7 +29,7 @@ const KS_TEAM = [
     image:
       "https://media.licdn.com/dms/image/v2/D4E03AQEqsdhaLemEtA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1706825783209?e=1755129600&v=beta&t=fXXUlyZ46KV0aaTX_iCNqoVMSxIyN7A9lrtXKoWGkNE",
     linkedin: "www.linkedin.com/in/noe-campo",
-    email: "noecampo@delosintelligence.fr",
+    email: "noe@ks-entreprise.com",
     portfolio: "www.noecampo.com",
     skills: ["Large Language Models (LLM)", "Generative AI", "FastAPI"],
     experience:
@@ -45,7 +44,7 @@ const KS_TEAM = [
     image:
       "https://media.licdn.com/dms/image/v2/D4E03AQGCegIcDgFjaQ/profile-displayphoto-shrink_800_800/B4EZXkL.1aG0Ag-/0/1743290101540?e=1755129600&v=beta&t=QE2HSxdvlwVlVBD-udQv4BKgjt8JB9-rFD_JHlOVyDE",
     linkedin: "www.linkedin.com/in/paul-gee",
-    email: "paulgeecontact@gmail.com",
+    email: "paul@ks-entreprise.com",
     skills: [
       "Intelligence artificielle (IA)",
       "Microsoft Azure",
@@ -63,7 +62,7 @@ const KS_TEAM = [
     image:
       "https://media.licdn.com/dms/image/v2/D5603AQFvksmWNosq_g/profile-displayphoto-shrink_800_800/B56ZSRxqCXHEAc-/0/1737612502023?e=1755129600&v=beta&t=uC-LAAiplpsnpJmfsKLhmCKtAUgAIpZo5pJfxoqWrDM",
     linkedin: "www.linkedin.com/in/louis-bordeau-edhec2026",
-    email: "louisbordeau85@gmail.com",
+    email: "louis@ks-entreprise.com",
     skills: [
       "Stratégie de sourcing",
       "Environnement de start-up",
