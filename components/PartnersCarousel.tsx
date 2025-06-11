@@ -10,7 +10,7 @@ export default function PartnersCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const logos = [
-    "/carousel/logo1.png",
+    // "/carousel/logo1.png",
     "/carousel/logo2.png",
     "/carousel/logo3.png",
     "/carousel/logo4.png",
