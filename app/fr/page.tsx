@@ -6,7 +6,6 @@ import PartnersCarousel from "@/components/PartnersCarousel";
 import SolutionsSection from "@/components/SolutionsSection";
 import WorkflowSection from "@/components/WorkflowSection";
 import FeaturesSection from "@/components/FeaturesSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import BackgroundLines from "@/components/BackgroundLines";
