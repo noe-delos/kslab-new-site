@@ -208,16 +208,6 @@ Use the exact markdown image syntax provided above to show both photos and compa
     }
   };
 
-  // Auto-scroll to bottom when new messages arrive, but only if user hasn't manually scrolled up
-  useEffect(() => {
-    if (messagesEndRef.current && shouldAutoScroll) {
-      messagesEndRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-      });
-    }
-  }, [messages, status, shouldAutoScroll]);
-
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (input.trim()) {
@@ -367,7 +357,6 @@ Use the exact markdown image syntax provided above to show both photos and compa
               {/* Messages */}
               <div
                 ref={messagesContainerRef}
-                onScroll={handleScroll}
                 className="flex-1 overflow-y-auto px-6 py-8 pb-32"
               >
                 <div className="max-w-4xl mx-auto space-y-8 pb-32">
