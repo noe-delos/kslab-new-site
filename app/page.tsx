@@ -2,16 +2,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { useState, useEffect, useRef } from "react";
-import { Send } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Send, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useTranslation } from "react-i18next";
 import SplashCursor from "@/components/SplashCursor";
+import { StreamingMarkdown } from "@/components/StreamingMarkdown";
 
 import "@/lib/i18n";
 
@@ -26,7 +28,7 @@ const KS_TEAM = [
     description:
       "In charge of the tech and leads the AI team behind KS at the engineering department. Specialized in AI development and tailor-made AI solutions.",
     image:
-      "https://media.licdn.com/dms/image/v2/D4E03AQEqsdhaLemEtA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1706825783209?e=1755129600&v=beta&t=fXXUlyZ46KV0aaTX_iCNqoVMSxIyN7A9lrtXKoWGkNE",
+      "https://media.licdn.com/dms/image/v2/D5603AQHRR8QOTXhTlg/profile-displayphoto-crop_800_800/B56Zd.4PboGQAI-/0/1750180389596?e=1755734400&v=beta&t=HpH4JQYZT1ygb9Scq-f4nDDA7soydfy_rSsl3s-HqGQ",
     linkedin: "www.linkedin.com/in/noe-campo",
     email: "noe@ks-entreprise.com",
     portfolio: "www.noecampo.com",
@@ -41,7 +43,7 @@ const KS_TEAM = [
     description:
       "Handles the business part of KS with expertise in sales, strategic partnerships, and business development.",
     image:
-      "https://media.licdn.com/dms/image/v2/D4E03AQGCegIcDgFjaQ/profile-displayphoto-shrink_800_800/B4EZXkL.1aG0Ag-/0/1743290101540?e=1755129600&v=beta&t=QE2HSxdvlwVlVBD-udQv4BKgjt8JB9-rFD_JHlOVyDE",
+      "https://media.licdn.com/dms/image/v2/D4E03AQGKYwb27G-DdQ/profile-displayphoto-crop_800_800/B4EZd.SN1bHYAI-/0/1750170396937?e=1755734400&v=beta&t=yb1hE3EClaWTJqoGk5ezXZrDyLr0QZwR8TR3C2sd7yw",
     linkedin: "www.linkedin.com/in/paul-gee",
     email: "paul@ks-entreprise.com",
     skills: [
@@ -59,7 +61,7 @@ const KS_TEAM = [
     description:
       "Handles the business part of KS with strong background in finance and real estate. Specializes in AI consulting and strategic sourcing.",
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQFvksmWNosq_g/profile-displayphoto-shrink_800_800/B56ZSRxqCXHEAc-/0/1737612502023?e=1755129600&v=beta&t=uC-LAAiplpsnpJmfsKLhmCKtAUgAIpZo5pJfxoqWrDM",
+      "https://media.licdn.com/dms/image/v2/D4E03AQFgcghRQ7pHKw/profile-displayphoto-crop_800_800/B4EZfhWjZVHYAI-/0/1751832478736?e=1755734400&v=beta&t=NB2k-msgyp-zpTHqGpx9TGWGLf2Ab1ZHyUd1gL3RSsw",
     linkedin: "www.linkedin.com/in/louis-bordeau-edhec2026",
     email: "louis@ks-entreprise.com",
     skills: [
@@ -124,7 +126,7 @@ Nous aidons les entreprises à tripler leur productivité et efficacité grâce 
 - Previous Company Logo: ![J.P. Morgan](https://i.postimg.cc/7ZgtxTyK/lqamlqmaqa.png)
 - Contact: louisbordeau85@gmail.com
 - LinkedIn: 🔗 [Connect with Louis on LinkedIn](https://www.linkedin.com/in/louis-bordeau-edhec2026)
-- Photo: ![Louis Bordeau](https://media.licdn.com/dms/image/v2/D4E03AQEqsdhaLemEtA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1706825783209?e=1755129600&v=beta&t=fXXUlyZ46KV0aaTX_iCNqoVMSxIyN7A9lrtXKoWGkNE)
+- Photo: ![Louis Bordeau](https://media.licdn.com/dms/image/v2/D4E03AQFgcghRQ7pHKw/profile-displayphoto-crop_800_800/B4EZfhWjZVHYAI-/0/1751832478736?e=1755734400&v=beta&t=NB2k-msgyp-zpTHqGpx9TGWGLf2Ab1ZHyUd1gL3RSsw)
 
 ### Noé Campo - Co-founder & AI Engineer
 - Role: Technical Lead & Engineering Department
@@ -134,7 +136,7 @@ Nous aidons les entreprises à tripler leur productivité et efficacité grâce 
 - Previous Company Logo: ![Delos Intelligence](https://cdn.prod.website-files.com/679d0a5b0329e1c6f9b87f2e/67ec022ea26fe8de32465154_logo-wide-dark.png)
 - Contact: noecampo@delosintelligence.fr
 - LinkedIn: 🔗 [Connect with Noé on LinkedIn](https://www.linkedin.com/in/noe-campo)
-- Photo: ![Noé Campo](https://media.licdn.com/dms/image/v2/D5603AQFvksmWNosq_g/profile-displayphoto-shrink_800_800/B56ZSRxqCXHEAc-/0/1737612502023?e=1755129600&v=beta&t=uC-LAAiplpsnpJmfsKLhmCKtAUgAIpZo5pJfxoqWrDM)
+- Photo: ![Noé Campo](https://media.licdn.com/dms/image/v2/D5603AQHRR8QOTXhTlg/profile-displayphoto-crop_800_800/B56Zd.4PboGQAI-/0/1750180389596?e=1755734400&v=beta&t=HpH4JQYZT1ygb9Scq-f4nDDA7soydfy_rSsl3s-HqGQ)
 
 ### Paul GEE - Co-founder & Business Development  
 - Role: Business Operations & Strategy
@@ -144,7 +146,7 @@ Nous aidons les entreprises à tripler leur productivité et efficacité grâce 
 - Previous Company Logo: ![BeReal](https://upload.wikimedia.org/wikipedia/commons/8/89/Logo-BeReal.png)
 - Contact: paulgeecontact@gmail.com
 - LinkedIn: 🔗 [Connect with Paul on LinkedIn](https://www.linkedin.com/in/paul-gee)
-- Photo: ![Paul GEE](https://media.licdn.com/dms/image/v2/D4E03AQGCegIcDgFjaQ/profile-displayphoto-shrink_800_800/B4EZXkL.1aG0Ag-/0/1743290101540?e=1755129600&v=beta&t=QE2HSxdvlwVlVBD-udQv4BKgjt8JB9-rFD_JHlOVyDE)
+- Photo: ![Paul GEE](https://media.licdn.com/dms/image/v2/D4E03AQGKYwb27G-DdQ/profile-displayphoto-crop_800_800/B4EZd.SN1bHYAI-/0/1750170396937?e=1755734400&v=beta&t=yb1hE3EClaWTJqoGk5ezXZrDyLr0QZwR8TR3C2sd7yw)
 
 When presenting team members, ALWAYS include:
 1. Their profile photo using the Photo field above
@@ -162,6 +164,7 @@ Use the exact markdown image syntax provided above to show both photos and compa
   const { t, i18n } = useTranslation();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Get suggestions based on current language
   const suggestions =
@@ -208,6 +211,34 @@ Use the exact markdown image syntax provided above to show both photos and compa
     }
   };
 
+  // Optimized scroll to bottom for streaming
+  const scrollToBottom = (smooth = true) => {
+    if (!messagesEndRef.current || !shouldAutoScroll) return;
+    
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+    
+    // Debounce scrolling during streaming to reduce jank
+    scrollTimeoutRef.current = setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({
+        behavior: smooth ? "smooth" : "auto",
+        block: "end",
+      });
+    }, status === "streaming" ? 100 : 0);
+  };
+
+  // Scroll when messages change
+  useEffect(() => {
+    scrollToBottom(status !== "streaming");
+    
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [messages, status]);
+
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (input.trim()) {
@@ -237,6 +268,23 @@ Use the exact markdown image syntax provided above to show both photos and compa
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col relative overflow-hidden">
       {displayMessages.length === 0 && <SplashCursor />}
+
+      {/* Return Button */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
+        className="absolute top-6 left-6 z-50"
+      >
+        <Link
+          href="https://ks-lab.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-zinc-800/80 hover:bg-zinc-700/80 backdrop-blur-sm border border-zinc-700/50 transition-all duration-200 hover:scale-105"
+        >
+          <ArrowLeft className="w-5 h-5 text-zinc-300" />
+        </Link>
+      </motion.div>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col relative">
@@ -357,6 +405,7 @@ Use the exact markdown image syntax provided above to show both photos and compa
               {/* Messages */}
               <div
                 ref={messagesContainerRef}
+                onScroll={handleScroll}
                 className="flex-1 overflow-y-auto px-6 py-8 pb-32"
               >
                 <div className="max-w-4xl mx-auto space-y-8 pb-32">
@@ -392,98 +441,10 @@ Use the exact markdown image syntax provided above to show both photos and compa
                           {message.role === "user" ? (
                             <p className="text-zinc-900">{message.content}</p>
                           ) : (
-                            <div className="prose prose-invert max-w-none">
-                              <ReactMarkdown
-                                components={{
-                                  p: ({ children }) => (
-                                    <p className="mb-4 last:mb-0 text-zinc-200 leading-relaxed text-base">
-                                      {children}
-                                    </p>
-                                  ),
-                                  ul: ({ children }) => (
-                                    <ul className="list-disc list-outside mb-6 space-y-2 text-zinc-200 pl-6 ml-4">
-                                      {children}
-                                    </ul>
-                                  ),
-                                  ol: ({ children }) => (
-                                    <ol className="list-decimal list-outside mb-6 space-y-2 text-zinc-200 pl-6 ml-4">
-                                      {children}
-                                    </ol>
-                                  ),
-                                  li: ({ children }) => (
-                                    <li className="text-zinc-300 leading-relaxed mb-2 pl-2">
-                                      {children}
-                                    </li>
-                                  ),
-                                  h1: ({ children }) => (
-                                    <h1 className="text-2xl font-black mb-4 text-zinc-50 border-b border-zinc-700 pb-2">
-                                      {children}
-                                    </h1>
-                                  ),
-                                  h2: ({ children }) => (
-                                    <h2 className="text-xl font-bold mb-4 text-zinc-100 mt-6">
-                                      {children}
-                                    </h2>
-                                  ),
-                                  h3: ({ children }) => (
-                                    <h3 className="text-lg font-semibold mb-3 text-zinc-200 mt-5">
-                                      {children}
-                                    </h3>
-                                  ),
-                                  h4: ({ children }) => (
-                                    <h4 className="text-base font-medium mb-2 text-zinc-300 mt-4">
-                                      {children}
-                                    </h4>
-                                  ),
-                                  strong: ({ children }) => (
-                                    <strong className="font-bold text-zinc-100">
-                                      {children}
-                                    </strong>
-                                  ),
-                                  em: ({ children }) => (
-                                    <em className="italic text-zinc-300 font-medium">
-                                      {children}
-                                    </em>
-                                  ),
-                                  code: ({ children }) => (
-                                    <code className="bg-zinc-800/70 border border-zinc-700/50 px-2 py-1 rounded-md text-sm text-zinc-100 font-mono font-semibold">
-                                      {children}
-                                    </code>
-                                  ),
-                                  pre: ({ children }) => (
-                                    <pre className="bg-zinc-900/70 border border-zinc-700/50 p-4 rounded-xl overflow-x-auto mb-4 shadow-lg">
-                                      <code className="text-zinc-200 font-mono text-sm leading-relaxed font-normal">
-                                        {children}
-                                      </code>
-                                    </pre>
-                                  ),
-                                  blockquote: ({ children }) => (
-                                    <blockquote className="border-l-4 border-zinc-600 pl-4 py-2 mb-4 bg-zinc-800/30 rounded-r-lg italic text-zinc-300 font-medium">
-                                      {children}
-                                    </blockquote>
-                                  ),
-                                  a: ({ href, children }) => (
-                                    <a
-                                      href={href}
-                                      className="text-blue-400 font-semibold hover:text-blue-300 no-underline bg-zinc-800/40 hover:bg-zinc-700/40 px-3 py-1.5 rounded-full border border-zinc-600/30 transition-all duration-200 hover:scale-105 inline-flex items-center gap-1"
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      {children}
-                                    </a>
-                                  ),
-                                  img: ({ src, alt }) => (
-                                    <img
-                                      src={src}
-                                      alt={alt}
-                                      className="rounded-lg max-w-24 h-auto border-2 border-zinc-700/30 my-4 inline-block mr-2"
-                                    />
-                                  ),
-                                }}
-                              >
-                                {message.content}
-                              </ReactMarkdown>
-                            </div>
+                            <StreamingMarkdown 
+                              content={message.content} 
+                              isStreaming={status === "streaming" && index === displayMessages.length - 1}
+                            />
                           )}
                         </div>
                       </motion.div>

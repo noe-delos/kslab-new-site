@@ -22,6 +22,8 @@ Guidelines:
 - If you don't have specific information, be honest about it and suggest contacting the team
 - Format your responses using markdown when appropriate for better readability`,
     messages,
+    temperature: 0.7,
+    maxTokens: 2000,
   });
 
   return result.toDataStreamResponse();
